@@ -28,7 +28,7 @@ fi
 if [[ ! -z ${SRCDS_MODS} ]]; then
     # Link mods to correct directory for ARK
     for val in ${SRCDS_MODS}; do
-        ln -nsf /home/container/steamapps/workshop/content/${SRCDS_MODAPPID}/$val /home/container/ShooterGame/Content/Mods/$val
+        ln -nsf "/home/container/steamapps/workshop/content/${SRCDS_MODAPPID}/$val" "/home/container/ShooterGame/Content/Mods/$val"
     done
 fi
 
