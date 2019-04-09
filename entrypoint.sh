@@ -16,8 +16,8 @@ if [ ! -z ${SRCDS_APPID} ]; then
     fi
     # Update mods
     if [[ ! -z ${SRCDS_MODS} ]]; then
-        "{SRCDS_MODS}"=`echo $(echo ${SRCDS_MODS} | sed -r 's/,+/ /g')`
-        for val in ${SRCDS_MODS}; do
+        MODS_FIXED=`echo $(echo ${SRCDS_MODS} | sed -r 's/,+/ /g')`
+        for val in $MODS_FIXED; do
             # Try 3 times sinc ebig mods timeout
             UPDATE_CMD="$UPDATE_CMD +workshop_download_item ${SRCDS_MODAPPID} $val validate +workshop_download_item ${SRCDS_MODAPPID} $val validate +workshop_download_item ${SRCDS_MODAPPID} $val validate"
         done
@@ -25,9 +25,9 @@ if [ ! -z ${SRCDS_APPID} ]; then
     UPDATE_CMD="$UPDATE_CMD +quit"
     eval $UPDATE_CMD
 fi
-if [[ ! -z ${SRCDS_MODS} ]]; then
+if [[ ! -z $MODS_FIXED ]]; then
     # Link mods to correct directory for ARK
-    for val in ${SRCDS_MODS}; do
+    for val in $MODS_FIXED; do
         ln -nsf "/home/container/steamapps/workshop/content/${SRCDS_MODAPPID}/$val" "/home/container/ShooterGame/Content/Mods/$val"
     done
 fi
