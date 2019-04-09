@@ -18,7 +18,8 @@ if [ ! -z ${SRCDS_APPID} ]; then
     # Update mods
     if [ ! -z ${SRCDS_MODS} ] && [ ! -z ${SRCDS_MODAPPID} ]; then
         for val in ${SRCDS_MODS}; do
-            UPDATE_CMD="$UPDATE_CMD +workshop_download_item ${SRCDS_MODAPPID} $val validate"
+            # Try 3 times sinc ebig mods timeout
+            UPDATE_CMD="$UPDATE_CMD +workshop_download_item ${SRCDS_MODAPPID} $val validate +workshop_download_item ${SRCDS_MODAPPID} $val validate +workshop_download_item ${SRCDS_MODAPPID} $val validate"
         done
         # Link mods to correct directory for ARK
         for val in ${SRCDS_MODS}; do
