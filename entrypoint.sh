@@ -14,17 +14,18 @@ if [ ! -z ${SRCDS_APPID} ]; then
             UPDATE_CMD="$UPDATE_CMD -betapassword ${SRCDS_BETAPASS}"
         fi
     fi
+    UPDATE_CMD="$UPDATE_CMD validate"
     # Update mods
     if [ ! -z ${SRCDS_MODS} ] && [ ! -z ${SRCDS_MODAPPID} ]; then
         for val in ${SRCDS_MODS}; do
-            UPDATE_CMD="$UPDATE_CMD +workshop_download_item ${SRCDS_MODAPPID} $val"
+            UPDATE_CMD="$UPDATE_CMD +workshop_download_item ${SRCDS_MODAPPID} $val validate"
         done
         # Link mods to correct directory for ARK
         for val in ${SRCDS_MODS}; do
             ln -nsf /home/container/steamapps/workshop/content/${SRCDS_MODAPPID}/$val /home/container/ShooterGame/Content/Mods/$val
         done
     fi
-    UPDATE_CMD="$UPDATE_CMD validate +quit"
+    UPDATE_CMD="$UPDATE_CMD +quit"
     eval $UPDATE_CMD
 fi
 if [ ! -z ${SRCDS_MODS} ] && [ ! -z ${SRCDS_MODAPPID} ]; then
