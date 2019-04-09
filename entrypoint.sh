@@ -14,10 +14,9 @@ if [ ! -z ${SRCDS_APPID} ]; then
             UPDATE_CMD="$UPDATE_CMD -betapassword ${SRCDS_BETAPASS}"
         fi
     fi
-    UPDATE_CMD="$UPDATE_CMD validate"
     # Update mods
     if [[ ! -z ${SRCDS_MODS} ]]; then
-        {SRCDS_MODS}=`eval echo "${SRCDS_MODS}" | sed -r 's/,+/ /g'`
+        "{SRCDS_MODS}"=`echo $(echo ${SRCDS_MODS} | sed -r 's/,+/ /g')`
         for val in ${SRCDS_MODS}; do
             # Try 3 times sinc ebig mods timeout
             UPDATE_CMD="$UPDATE_CMD +workshop_download_item ${SRCDS_MODAPPID} $val validate +workshop_download_item ${SRCDS_MODAPPID} $val validate +workshop_download_item ${SRCDS_MODAPPID} $val validate"
