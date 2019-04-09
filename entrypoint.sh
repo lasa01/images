@@ -16,7 +16,7 @@ if [ ! -z ${SRCDS_APPID} ]; then
     fi
     UPDATE_CMD="$UPDATE_CMD validate"
     # Update mods
-    if [ ! -z ${SRCDS_MODS} ]; then
+    if [[ ! -z ${SRCDS_MODS} ]]; then
         for val in ${SRCDS_MODS}; do
             # Try 3 times sinc ebig mods timeout
             UPDATE_CMD="$UPDATE_CMD +workshop_download_item ${SRCDS_MODAPPID} $val validate +workshop_download_item ${SRCDS_MODAPPID} $val validate +workshop_download_item ${SRCDS_MODAPPID} $val validate"
@@ -25,7 +25,7 @@ if [ ! -z ${SRCDS_APPID} ]; then
     UPDATE_CMD="$UPDATE_CMD +quit"
     eval $UPDATE_CMD
 fi
-if [ ! -z ${SRCDS_MODS} ]; then
+if [[ ! -z ${SRCDS_MODS} ]]; then
     # Link mods to correct directory for ARK
     for val in ${SRCDS_MODS}; do
         ln -nsf /home/container/steamapps/workshop/content/${SRCDS_MODAPPID}/$val /home/container/ShooterGame/Content/Mods/$val
