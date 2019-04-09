@@ -15,6 +15,15 @@ if [ ! -z ${SRCDS_APPID} ]; then
     else
         ./steamcmd/steamcmd.sh +login anonymous +force_install_dir /home/container +app_update ${SRCDS_APPID} +quit
     fi
+    # Update mods
+    if [ ! -z ${SRCDS_MODS} && ! -z ${SRCDS_MODAPPID} ]; then
+        UPDATE_MODS="./steamcmd/steamcmd.sh +login anonymous +force_install_dir /home/container"
+        for val in ${SRCDS_MODS}; do
+            UPDATE_MODS="$UPDATE_MODS +workshop_download_item ${SRCDS_MODAPPID} $val"
+        done
+        UPDATE_MODS="$UPDATE_MODS +quit"
+        eval $UPDATE_MODS
+    fi
 fi
 
 # Replace Startup Variables
