@@ -17,7 +17,7 @@ if [ ! -z ${SRCDS_APPID} ]; then
         ./steamcmd/steamcmd.sh +login anonymous +force_install_dir /home/container +app_update ${SRCDS_APPID} +quit
     fi
     # Update mods
-    if [ ! -z ${SRCDS_MODS} && ! -z ${SRCDS_MODAPPID} ]; then
+    if [ ! -z ${SRCDS_MODS} ] && [ ! -z ${SRCDS_MODAPPID} ]; then
         echo "Updating mods"
         UPDATE_MODS="./steamcmd/steamcmd.sh +login anonymous +force_install_dir /home/container"
         for val in ${SRCDS_MODS}; do
