@@ -5,7 +5,7 @@
 # ----------------------------------
 FROM        ubuntu:18.04
 
-LABEL       author="Pterodactyl Software" maintainer="support@pterodactyl.io"
+LABEL       author="lasa01"
 
 ENV         DEBIAN_FRONTEND noninteractive
 # Install Dependencies
