@@ -18,7 +18,7 @@ if [ ! -z ${SRCDS_APPID} ]; then
     if [[ ! -z ${SRCDS_MODS} ]]; then
         MODS_FIXED=`echo $(echo ${SRCDS_MODS} | sed -r 's/,+/ /g')`
         for val in $MODS_FIXED; do
-            # Try 3 times sinc ebig mods timeout
+            # Try 3 times since big mods timeout
             UPDATE_CMD="$UPDATE_CMD +workshop_download_item ${SRCDS_MODAPPID} $val validate +workshop_download_item ${SRCDS_MODAPPID} $val validate +workshop_download_item ${SRCDS_MODAPPID} $val validate"
         done
     fi
@@ -34,7 +34,8 @@ fi
 
 # Replace Startup Variables
 MODIFIED_STARTUP=`eval echo $(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')`
-echo ":/home/container$ ${MODIFIED_STARTUP}"
+echo ":/home/container/ShooterGame/Binaries/Linux$ ${MODIFIED_STARTUP}"
 
 # Run the Server
+cd /home/container/ShooterGame/Binaries/Linux
 eval ${MODIFIED_STARTUP}
