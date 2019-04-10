@@ -15,22 +15,22 @@ if [ ! -z ${SRCDS_APPID} ]; then
         fi
     fi
     # Update mods
-    if [[ ! -z ${SRCDS_MODS} ]]; then
-        MODS_FIXED=`echo $(echo ${SRCDS_MODS} | sed -r 's/,+/ /g')`
-        for val in $MODS_FIXED; do
-            # Try 3 times since big mods timeout
-            UPDATE_CMD="$UPDATE_CMD +workshop_download_item ${SRCDS_MODAPPID} $val validate +workshop_download_item ${SRCDS_MODAPPID} $val validate +workshop_download_item ${SRCDS_MODAPPID} $val validate"
-        done
-    fi
+    #if [[ ! -z ${SRCDS_MODS} ]]; then
+    #    MODS_FIXED=`echo $(echo ${SRCDS_MODS} | sed -r 's/,+/ /g')`
+    #    for val in $MODS_FIXED; do
+    #        # Try 3 times since big mods timeout
+    #        UPDATE_CMD="$UPDATE_CMD +workshop_download_item ${SRCDS_MODAPPID} $val validate +workshop_download_item ${SRCDS_MODAPPID} $val validate +workshop_download_item ${SRCDS_MODAPPID} $val validate"
+    #    done
+    #fi
     UPDATE_CMD="$UPDATE_CMD +quit"
     eval $UPDATE_CMD
 fi
-if [[ ! -z $MODS_FIXED ]]; then
+# if [[ ! -z $MODS_FIXED ]]; then
     # Link mods to correct directory for ARK
-    for val in $MODS_FIXED; do
-        ln -nsf "/home/container/steamapps/workshop/content/${SRCDS_MODAPPID}/$val" "/home/container/ShooterGame/Content/Mods/$val"
-    done
-fi
+#    for val in $MODS_FIXED; do
+#        ln -nsf "/home/container/steamapps/workshop/content/${SRCDS_MODAPPID}/$val" "/home/container/ShooterGame/Content/Mods/$val"
+#    done
+# fi
 
 # Replace Startup Variables
 MODIFIED_STARTUP=`eval echo $(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')`
