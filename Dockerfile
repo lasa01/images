@@ -1,18 +1,45 @@
 # ----------------------------------
 # Pterodactyl Core Dockerfile
-# Environment: Source Engine
+# Environment: Wine
 # Minimum Panel Version: 0.6.0
+# Based on bregell/docker_wine
 # ----------------------------------
 FROM        ubuntu:18.04
 
-LABEL       author="Pterodactyl Software" maintainer="support@pterodactyl.io"
+LABEL       author="lasa01"
 
 ENV         DEBIAN_FRONTEND noninteractive
+ENV         WINEARCH win64
 # Install Dependencies
 RUN         dpkg --add-architecture i386 \
             && apt-get update \
             && apt-get upgrade -y \
-            && apt-get install -y tar curl gcc g++ lib32gcc1 libgcc1 libcurl4-gnutls-dev:i386 libssl1.0.0:i386 libcurl4:i386 lib32tinfo5 libtinfo5:i386 lib32z1 lib32stdc++6 libncurses5:i386 libcurl3-gnutls:i386 iproute2 gdb libsdl1.2debian libfontconfig telnet net-tools netcat \
+            && apt-get install -y --no-install-recommends --no-install-suggests \
+                        lib32stdc++6 \
+                        lib32gcc1 \
+                        wget \
+                        ca-certificates \
+                        apt-utils \
+                        sed \
+                        software-properties-common \
+		apt-transport-https \
+		xvfb \
+            && wget -nc https://dl.winehq.org/wine-builds/Release.key \
+	&& apt-key add Release.key \
+	&& apt-add-repository https://dl.winehq.org/wine-builds/ubuntu/ \
+            && apt-get update \
+	&& apt-get install -y --no-install-recommends --no-install-suggests --allow-unauthenticated \
+		winehq-devel \
+		cabextract \
+            && wget 'https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks' \
+            && mv winetricks /usr/bin/winetricks \
+            && chmod +x /usr/bin/winetricks \
+            && WINEDLLOVERRIDES="mscoree,mshtml=" wineboot --init \
+	&& xvfb-run winetricks -q vcrun2013 vcrun2017 \
+            && wineboot --init \
+	&& winetricks -q dotnet472 corefonts \
+            && wineboot --init \
+	&& winetricks -q dxvk \
             && useradd -m -d /home/container container
 
 USER        container
