@@ -39,11 +39,9 @@ RUN         wget 'https://raw.githubusercontent.com/Winetricks/winetricks/master
             && mv winetricks /usr/bin/winetricks \
             && chmod +x /usr/bin/winetricks
 RUN         WINEDLLOVERRIDES="mscoree,mshtml=" wineboot --init \
-            && xvfb-run winetricks -q vcrun2013 vcrun2017
+            && xvfb-run winetricks -q vcrun2017
 RUN         wineboot --init \
             && winetricks -q dotnet472 corefonts
-RUN         wineboot --init \
-            && winetricks -q dxvk
 RUN         useradd -m -d /home/container container
 
 USER        container
