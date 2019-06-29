@@ -28,7 +28,7 @@ RUN         dpkg --add-architecture i386 \
             && wget -nc https://dl.winehq.org/wine-builds/Release.key \
             && apt-key add Release.key \
             && apt-add-repository https://dl.winehq.org/wine-builds/ubuntu/ \
-            && apt-get update \
+            && apt-get update --allow-unauthenticated \
             && apt-get install -y --no-install-recommends --no-install-suggests --allow-unauthenticated \
                 winehq-devel \
                 cabextract \
