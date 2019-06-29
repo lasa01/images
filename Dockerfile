@@ -22,24 +22,25 @@ RUN         dpkg --add-architecture i386 \
                         apt-utils \
                         sed \
                         software-properties-common \
-		apt-transport-https \
-		xvfb \
+			apt-transport-https \
+			xvfb \
+                        gpg-agent \
             && wget -nc https://dl.winehq.org/wine-builds/Release.key \
-	&& apt-key add Release.key \
-	&& apt-add-repository https://dl.winehq.org/wine-builds/ubuntu/ \
+            && apt-key add Release.key \
+            && apt-add-repository https://dl.winehq.org/wine-builds/ubuntu/ \
             && apt-get update \
-	&& apt-get install -y --no-install-recommends --no-install-suggests --allow-unauthenticated \
-		winehq-devel \
-		cabextract \
+            && apt-get install -y --no-install-recommends --no-install-suggests --allow-unauthenticated \
+                winehq-devel \
+                cabextract \
             && wget 'https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks' \
             && mv winetricks /usr/bin/winetricks \
             && chmod +x /usr/bin/winetricks \
             && WINEDLLOVERRIDES="mscoree,mshtml=" wineboot --init \
-	&& xvfb-run winetricks -q vcrun2013 vcrun2017 \
+            && xvfb-run winetricks -q vcrun2013 vcrun2017 \
             && wineboot --init \
-	&& winetricks -q dotnet472 corefonts \
+            && winetricks -q dotnet472 corefonts \
             && wineboot --init \
-	&& winetricks -q dxvk \
+            && winetricks -q dxvk \
             && useradd -m -d /home/container container
 
 USER        container
