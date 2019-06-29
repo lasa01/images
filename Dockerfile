@@ -22,12 +22,15 @@ RUN         apt-get install -y --no-install-recommends --no-install-suggests \
                         apt-utils \
                         sed \
                         software-properties-common \
-			apt-transport-https \
-			xvfb \
+                        apt-transport-https \
+                        xvfb \
                         gpg-agent
 RUN         wget -nc https://dl.winehq.org/wine-builds/winehq.key \
             && apt-key add winehq.key \
             && apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ bionic main'
+RUN         wget -nc https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/xUbuntu_18.04/Release.key \
+            && apt-key add Release.key \
+            && apt-add-repository 'deb https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/xUbuntu_18.04/ ./'
 RUN         apt-get update \
             && apt-get install -y --no-install-recommends --no-install-suggests --allow-unauthenticated \
                 winehq-devel \
