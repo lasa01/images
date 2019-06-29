@@ -25,10 +25,10 @@ RUN         apt-get install -y --no-install-recommends --no-install-suggests \
 			apt-transport-https \
 			xvfb \
                         gpg-agent
-RUN         wget -nc https://dl.winehq.org/wine-builds/Release.key \
-            && apt-key add Release.key \
-            && apt-add-repository https://dl.winehq.org/wine-builds/ubuntu/
-RUN         apt-get update --allow-unauthenticated \
+RUN         wget -nc https://dl.winehq.org/wine-builds/winehq.key \
+            && apt-key add winehq.key \
+            && apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ bionic main'
+RUN         apt-get update \
             && apt-get install -y --no-install-recommends --no-install-suggests --allow-unauthenticated \
                 winehq-devel \
                 cabextract
