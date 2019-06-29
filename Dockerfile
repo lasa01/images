@@ -13,8 +13,8 @@ ENV         WINEARCH win64
 # Install Dependencies
 RUN         dpkg --add-architecture i386 \
             && apt-get update \
-            && apt-get upgrade -y \
-            && apt-get install -y --no-install-recommends --no-install-suggests \
+            && apt-get upgrade -y 
+RUN         apt-get install -y --no-install-recommends --no-install-suggests \
                         lib32stdc++6 \
                         lib32gcc1 \
                         wget \
@@ -24,24 +24,24 @@ RUN         dpkg --add-architecture i386 \
                         software-properties-common \
 			apt-transport-https \
 			xvfb \
-                        gpg-agent \
-            && wget -nc https://dl.winehq.org/wine-builds/Release.key \
+                        gpg-agent
+RUN         wget -nc https://dl.winehq.org/wine-builds/Release.key \
             && apt-key add Release.key \
-            && apt-add-repository https://dl.winehq.org/wine-builds/ubuntu/ \
-            && apt-get update --allow-unauthenticated \
+            && apt-add-repository https://dl.winehq.org/wine-builds/ubuntu/
+RUN         apt-get update --allow-unauthenticated \
             && apt-get install -y --no-install-recommends --no-install-suggests --allow-unauthenticated \
                 winehq-devel \
-                cabextract \
-            && wget 'https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks' \
+                cabextract
+RUN         wget 'https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks' \
             && mv winetricks /usr/bin/winetricks \
-            && chmod +x /usr/bin/winetricks \
-            && WINEDLLOVERRIDES="mscoree,mshtml=" wineboot --init \
-            && xvfb-run winetricks -q vcrun2013 vcrun2017 \
-            && wineboot --init \
-            && winetricks -q dotnet472 corefonts \
-            && wineboot --init \
-            && winetricks -q dxvk \
-            && useradd -m -d /home/container container
+            && chmod +x /usr/bin/winetricks
+RUN         WINEDLLOVERRIDES="mscoree,mshtml=" wineboot --init \
+            && xvfb-run winetricks -q vcrun2013 vcrun2017
+RUN         wineboot --init \
+            && winetricks -q dotnet472 corefonts
+RUN         wineboot --init \
+            && winetricks -q dxvk
+RUN         useradd -m -d /home/container container
 
 USER        container
 ENV         HOME /home/container
