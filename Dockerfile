@@ -10,6 +10,8 @@ LABEL       author="lasa01"
 
 ENV         DEBIAN_FRONTEND noninteractive
 ENV         WINEARCH win64
+ENV         WINEDEBUG -all
+
 # Install Dependencies
 RUN         dpkg --add-architecture i386 \
             && apt-get update \
