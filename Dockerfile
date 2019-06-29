@@ -26,7 +26,9 @@ RUN         apt-get install -y --no-install-recommends --no-install-suggests \
                         software-properties-common \
                         apt-transport-https \
                         xvfb \
-                        gpg-agent
+                        gpg-agent \
+                        iproute2 \
+                        net-tools
 RUN         wget -nc https://dl.winehq.org/wine-builds/winehq.key \
             && apt-key add winehq.key \
             && apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ bionic main'
