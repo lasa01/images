@@ -26,7 +26,6 @@ RUN         apt-get install -y --no-install-recommends --no-install-suggests \
                         software-properties-common \
                         apt-transport-https \
                         xvfb \
-                        gpg-agent \
                         iproute2 \
                         net-tools
 RUN         wget -nc https://dl.winehq.org/wine-builds/winehq.key \
