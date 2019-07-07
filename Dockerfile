@@ -4,13 +4,13 @@
 # Minimum Panel Version: 0.6.0
 # Based on bregell/docker_wine
 # ----------------------------------
-FROM        ubuntu:18.04
+FROM        ubuntu:16.04
 
 LABEL       author="lasa01"
 
 ENV         DEBIAN_FRONTEND noninteractive
 ENV         WINEARCH win64
-ENV         WINEDEBUG -all
+ENV         WINEDEBUG fixme-all
 
 # Install Dependencies
 RUN         dpkg --add-architecture i386 \
@@ -31,10 +31,7 @@ RUN         apt-get install -y --no-install-recommends --no-install-suggests \
                         net-tools
 RUN         wget -nc https://dl.winehq.org/wine-builds/winehq.key \
             && apt-key add winehq.key \
-            && apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ bionic main'
-RUN         wget -nc https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/xUbuntu_18.04/Release.key \
-            && apt-key add Release.key \
-            && apt-add-repository 'deb https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/xUbuntu_18.04/ ./'
+            && apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ xenial main'
 RUN         apt-get update \
             && apt-get install -y --no-install-recommends --no-install-suggests --allow-unauthenticated \
                 winehq-devel \
