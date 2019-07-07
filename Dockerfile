@@ -39,11 +39,3 @@ RUN         apt-get update \
 RUN         wget 'https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks' \
             && mv winetricks /usr/bin/winetricks \
             && chmod +x /usr/bin/winetricks
-RUN         useradd -m -d /home/container container
-
-USER        container
-ENV         HOME /home/container
-WORKDIR     /home/container
-
-COPY        ./entrypoint.sh /entrypoint.sh
-CMD         ["/bin/bash", "/entrypoint.sh"]
