@@ -33,7 +33,7 @@ RUN         wget -nc https://dl.winehq.org/wine-builds/winehq.key \
             && apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ xenial main'
 RUN         apt-get update \
             && apt-get install -y --no-install-recommends --no-install-suggests --allow-unauthenticated \
-                winehq-devel \
+                winehq-stable \
                 cabextract
 RUN         wget 'https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks' \
             && mv winetricks /usr/bin/winetricks \
