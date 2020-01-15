@@ -4,7 +4,7 @@
 # Minimum Panel Version: 0.6.0
 # Based on bregell/docker_wine
 # ----------------------------------
-FROM        ubuntu:16.04
+FROM        ubuntu:19.10
 
 LABEL       author="lasa01"
 
@@ -30,10 +30,10 @@ RUN         apt-get install -y --no-install-recommends --no-install-suggests \
                         net-tools
 RUN         wget -nc https://dl.winehq.org/wine-builds/winehq.key \
             && apt-key add winehq.key \
-            && apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ xenial main'
+            && apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ eoan main'
 RUN         apt-get update \
             && apt-get install -y --no-install-recommends --no-install-suggests --allow-unauthenticated \
-                winehq-stable \
+                winehq-devel \
                 cabextract
 RUN         wget 'https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks' \
             && mv winetricks /usr/bin/winetricks \
