@@ -33,9 +33,12 @@ RUN         wget -nc https://dl.winehq.org/wine-builds/winehq.key \
             && apt-key add winehq.key \
             && apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ eoan main'
 RUN         apt-get update \
-            && apt-get install -y --no-install-recommends --no-install-suggests --allow-unauthenticated \
+            && apt-get install -y --install-recommends --no-install-suggests --allow-unauthenticated \
                 winehq-staging \
-                cabextract
+                cabextract \
+                winbind \
+                steamcmd \
+            && systemctl enable winbind
 RUN         wget 'https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks' \
             && mv winetricks /usr/bin/winetricks \
             && chmod +x /usr/bin/winetricks
