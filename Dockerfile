@@ -37,8 +37,7 @@ RUN         apt-get update \
                 winehq-staging \
                 cabextract \
                 winbind \
-                steamcmd \
-            && systemctl enable winbind
+                steamcmd
 RUN         wget 'https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks' \
             && mv winetricks /usr/bin/winetricks \
             && chmod +x /usr/bin/winetricks
