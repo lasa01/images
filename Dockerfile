@@ -15,7 +15,7 @@ USER arch
 RUN         git clone https://github.com/Tk-Glitch/PKGBUILDS.git /home/arch/PKGBUILDS \
             && cd /home/arch/PKGBUILDS/wine-tkg-git \
             && sed -i 's/_NOINITIALPROMPT="false"/_NOINITIALPROMPT="true"/g' customization.cfg \
-            && makepkg -si
+            && yes | makepkg -si
 
 FROM        ubuntu:19.10
 
