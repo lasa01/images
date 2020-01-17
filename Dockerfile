@@ -5,9 +5,11 @@
 # Based on bregell/docker_wine
 # ----------------------------------
 FROM danger89/wine-pkgbuilds:latest as buildstage
-USER root
 
+USER root
 RUN         pacman --noconfirm -Syu
+
+USER arch
 RUN         git clone https://github.com/Tk-Glitch/PKGBUILDS.git PKGBUILDS \
             && cd PKGBUILDS/wine-tkg-git \
             && makepkg -si
