@@ -28,7 +28,7 @@ ENV         WINEDEBUG fixme-all
 # Get wine from buildstage
 COPY        --from=buildstage /home/arch/PKGBUILDS/wine-tkg-git/pkg/wine-tkg-*** /
 # Ensure wine works
-RUN         wine --version
+RUN         wine64 --version
 
 # Install Dependencies
 RUN         dpkg --add-architecture i386 \
