@@ -7,7 +7,8 @@
 FROM danger89/wine-pkgbuilds:latest as buildstage
 
 USER root
-RUN         pacman --noconfirm -Syu
+RUN         pacman --noconfirm -Syu \
+            && chown -R arch ./
 
 USER arch
 RUN         git clone https://github.com/Tk-Glitch/PKGBUILDS.git PKGBUILDS \
