@@ -7,8 +7,8 @@
 FROM danger89/wine-pkgbuilds:latest as buildstage
 USER root
 
-RUN         pacman -Syu \
-            && pacman -S git
+RUN         pacman --noconfirm -Syu \
+            && pacman --noconfirm -S git
 RUN         git clone https://github.com/Tk-Glitch/PKGBUILDS.git PKGBUILDS \
             && cd PKGBUILDS/wine-tkg-git \
             && makepgk -si
@@ -22,7 +22,7 @@ ENV         WINEARCH win64
 ENV         WINEDEBUG fixme-all
 
 # Get wine from buildstage
-COPY        --from=buildstage PKGBUILDS/wine-tgk-git/pkg/wine-tkg-*** /opt/wine-tkg-git
+COPY        --from=buildstage PKGBUILDS/wine-tkg-git/pkg/wine-tkg-*** /opt/wine-tkg-git
 # Ensure wine works and symlink binaries
 RUN         /opt/wine-tkg-git/bin/wine --version \
             && ln -s /opt/wine-tkg-git/bin/* /usr/bin/
