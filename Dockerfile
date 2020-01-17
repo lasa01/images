@@ -36,8 +36,7 @@ RUN         apt-get update \
             && apt-get install -y --no-install-recommends --no-install-suggests --allow-unauthenticated \
                 winehq-staging \
                 cabextract \
-                winbind \
-                steamcmd
+                winbind
 RUN         wget 'https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks' \
             && mv winetricks /usr/bin/winetricks \
             && chmod +x /usr/bin/winetricks
