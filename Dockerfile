@@ -26,7 +26,7 @@ ENV         WINEARCH win64
 ENV         WINEDEBUG fixme-all
 
 # Get wine from buildstage
-COPY        --from=buildstage /home/arch/PKGBUILDS/wine-tkg-git/pkg/wine-tkg-*** /opt/wine-tkg-git
+COPY        --from=buildstage /home/arch/PKGBUILDS/wine-tkg-git/pkg/wine-tkg-*** /
 # Ensure wine works and symlink binaries
 RUN         /opt/wine-tkg-git/bin/wine --version \
             && ln -s /opt/wine-tkg-git/bin/* /usr/bin/
