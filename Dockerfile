@@ -8,7 +8,7 @@ FROM danger89/wine-pkgbuilds:latest as buildstage
 
 USER root
 RUN         pacman --noconfirm -Syu \
-            && chown -R arch /home/arch/
+            && chown -R arch /home/arch/ \
             && echo "arch ALL=(ALL:ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)
 
 USER arch
