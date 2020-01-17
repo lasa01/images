@@ -13,7 +13,8 @@ RUN         pacman --noconfirm -Syu \
 USER arch
 RUN         git clone https://github.com/Tk-Glitch/PKGBUILDS.git /home/arch/PKGBUILDS \
             && cd /home/arch/PKGBUILDS/wine-tkg-git \
-            && export _NOINITIALPROMPT="true" && makepkg -si
+            && sed -i 's/_NOINITIALPROMPT="false"/_NOINITIALPROMPT="true"/g' customization.cfg \
+            && makepkg -si
 
 FROM        ubuntu:19.10
 
