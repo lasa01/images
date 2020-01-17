@@ -7,11 +7,10 @@
 FROM danger89/wine-pkgbuilds:latest as buildstage
 USER root
 
-RUN         pacman --noconfirm -Syu \
-            && pacman --noconfirm -S git
+RUN         pacman --noconfirm -Syu
 RUN         git clone https://github.com/Tk-Glitch/PKGBUILDS.git PKGBUILDS \
             && cd PKGBUILDS/wine-tkg-git \
-            && makepgk -si
+            && makepkg -si
 
 FROM        ubuntu:19.10
 
