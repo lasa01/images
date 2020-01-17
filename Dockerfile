@@ -4,7 +4,7 @@
 # Minimum Panel Version: 0.6.0
 # Based on bregell/docker_wine
 # ----------------------------------
-FROM        lasa01/ubuntu-wine-staging
+FROM        lasa01/ubuntu-wine-tkg
 
 LABEL       author="lasa01"
 
