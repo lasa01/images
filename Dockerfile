@@ -7,12 +7,11 @@
 FROM danger89/wine-pkgbuilds:latest as buildstage
 
 USER root
-RUN         pacman --noconfirm -Syu \
-            && chown arch ./
+RUN         pacman --noconfirm -Syu
 
 USER arch
-RUN         git clone https://github.com/Tk-Glitch/PKGBUILDS.git PKGBUILDS \
-            && cd PKGBUILDS/wine-tkg-git \
+RUN         git clone https://github.com/Tk-Glitch/PKGBUILDS.git /home/arch/PKGBUILDS \
+            && cd /home/arch/PKGBUILDS/wine-tkg-git \
             && makepkg -si
 
 FROM        ubuntu:19.10
@@ -24,7 +23,7 @@ ENV         WINEARCH win64
 ENV         WINEDEBUG fixme-all
 
 # Get wine from buildstage
-COPY        --from=buildstage PKGBUILDS/wine-tkg-git/pkg/wine-tkg-*** /opt/wine-tkg-git
+COPY        --from=buildstage /home/arch/PKGBUILDS/wine-tkg-git/pkg/wine-tkg-*** /opt/wine-tkg-git
 # Ensure wine works and symlink binaries
 RUN         /opt/wine-tkg-git/bin/wine --version \
             && ln -s /opt/wine-tkg-git/bin/* /usr/bin/
