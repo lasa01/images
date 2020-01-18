@@ -56,7 +56,16 @@ RUN         apt-get install -y --no-install-recommends --no-install-suggests \
                         libxext6 \
                         libxml2 \
                         zlib1g \
-                        libncurses6
+                        libncurses6 \
+                        libc6:i386 \
+                        libgcc1:i386 \
+                        libglib2.0-0:i386 \
+                        libmpg123-0:i386 \
+                        libudev1:i386 \
+                        libxext6:i386 \
+                        libxml2:i386 \
+                        zlib1g:i386 \
+                        libncurses6:i386
 
 RUN         wget 'https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks' \
             && mv winetricks /usr/bin/winetricks \
