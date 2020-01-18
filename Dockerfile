@@ -56,7 +56,7 @@ RUN         apt-get install -y --no-install-recommends --no-install-suggests \
                         libxext6 \
                         libxml2 \
                         zlib1g \
-                        libncurses
+                        libncurses6
 
 RUN         wget 'https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks' \
             && mv winetricks /usr/bin/winetricks \
