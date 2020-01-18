@@ -46,7 +46,8 @@ RUN         apt-get install -y --no-install-recommends --no-install-suggests \
                         xvfb \
                         iproute2 \
                         net-tools \
-                        gpg-agent
+                        gpg-agent \
+                        cabextract
 RUN         wget 'https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks' \
             && mv winetricks /usr/bin/winetricks \
             && chmod +x /usr/bin/winetricks
