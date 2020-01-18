@@ -8,7 +8,8 @@ FROM        lasa01/ubuntu-wine-tkg
 
 LABEL       author="lasa01"
 
-RUN         useradd -m -d /home/container container
+RUN         useradd -m -d /home/container container \
+            && useradd -M -u 995 pterodactyl
 
 USER        container
 ENV         HOME /home/container
